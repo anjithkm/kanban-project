@@ -1,0 +1,19 @@
+{
+    "presets": [
+        "@babel/preset-env"
+      ],
+    "env": {
+        "production": {
+            "plugins": [
+            "transform-remove-console",
+            ["module-resolver", {
+                "root": ["./"],
+                "alias": {
+                    "@/*": ["./src/*"],
+                    "~/*": ["./*"]
+                }
+              }]
+            ]
+        }
+    }
+}
