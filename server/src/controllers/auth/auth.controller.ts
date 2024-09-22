@@ -155,8 +155,7 @@ export const checkAuthorization = async ( req: Request, res: Response )=>{
   try{
 
     const { token } = req.body;
-
-
+    
     if (!token){
 
       const error_code = 401

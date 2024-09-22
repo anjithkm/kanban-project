@@ -5,8 +5,8 @@ import CircularJSON from 'circular-json';
 import ExpressService from '@/services/express.service'
 import DatabaseService from '@/services/mongo.service'
 
-import isValidToken from '@/middleware/token.middleware';
-import {apiRoutes,publicRoutes} from '@/routes/index';
+// import isValidToken from '@/middleware/token.middleware';
+import {publicRoutes} from '@/routes/index';
 
 
 // Load environment variables from .env file
@@ -18,7 +18,6 @@ const DB_LOCAL_PORT : number = parseInt( String(process.env.DB_PORT || 27017) );
 const server = new ExpressService(APP_SERVER_PORT)
 const database = new DatabaseService(DB_LOCAL_PORT)
 
-    server.setRouter('/api',apiRoutes,[isValidToken])
     server.setRouter('/',publicRoutes)
     
     database.start()

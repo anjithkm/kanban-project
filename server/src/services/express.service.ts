@@ -1,9 +1,8 @@
 import express, { Application,Express } from 'express';
 import cors, { CorsOptions } from 'cors';
-import { setupSwagger } from '@/docs';
 import ExpressRouter from '@/services/router.services';
 import http from 'http';
-import path from 'path';
+// import path from 'path';
 
 
 class ExpressService {
@@ -40,13 +39,12 @@ class ExpressService {
     console.log(process.cwd())
 
     // static files
-    this.app.use('/uploads', express.static(path.join(`${this.rootDir}`, 'src','uploads')));
+    // this.app.use('/uploads', express.static(path.join(`${this.rootDir}`, 'src','uploads')));
 
   }
 
   public routes(middlewares:any=[]):ExpressRouter{
     this.router.setMiddleware(middlewares)
-    // (entryPoint,this.middlewares, router)
     return this.router
   }
 
@@ -59,9 +57,7 @@ class ExpressService {
     // setupSwagger(this.app);
 
     this.server.listen(this.port, () => {
-      console.log(`Express service is running on port ${this.port}`); 
-      console.log(`Open api docs available at http://localhost:${this.port}/api-docs`);
-   
+      console.log(`Express service is running on port ${this.port}`);
     }).on('error', (err: any) => {
         
         if (err.code === 'EADDRINUSE') {
