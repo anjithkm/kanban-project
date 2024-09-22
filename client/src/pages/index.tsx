@@ -127,11 +127,6 @@ export default function Home() {
   setState([[],[],[],[]])
   const fetchData = async () => {
 
-    // const response = await fetch('/api/hello');
-    // const result = await response.json();
-    // console.log("fetch result", result )
-
-
     try {
         const { data } = await axios.get(apiUrl);
         if(data.success){
@@ -190,7 +185,9 @@ export default function Home() {
 
   function HandleCreateTask(){
       setCreateTask(false)
-      setState([[{...newItem, id: `${Math.floor(Math.random()*Math.pow(10,15))}`},...state[0]],state[1],state[2],state[3]])
+      setPrevState(state)
+      const newState = [[{...newItem, id: `${Math.floor(Math.random()*Math.pow(10,15))}`},...state[0]],state[1],state[2],state[3]]
+      updateData(newState)
   }
 
   function HandleDeleteTask(ind:number,index:number){
