@@ -27,17 +27,6 @@ interface Task {
 type StateType = Task[][];
 type NewStateType = Task
 
-// fake data generator
-const getItems = (count: number, offset = 0): Task[] =>
-  Array.from({ length: count }, (v, k) => k).map((k) => ({
-    id: `item-${k + offset}-${Math.random()}`,
-    title: `item ${k + offset}`,
-    description:"descriptions ...",
-    comments: 10,
-    files:0,
-    priority:"LOW"
-}))
-
 
 // Reorder function with types
 const reorder = (
@@ -129,7 +118,8 @@ export default function Home() {
 
     try {
       await axios.get('http://localhost:8080');
-    } catch (error) {
+    } catch (error:any) {
+      console.log("error",error)
       alert("Can't connect to 'http://localhost:8080, Try again")
     }
 
@@ -140,7 +130,7 @@ export default function Home() {
           setId(data?.data?._id)
         }
 
-    } catch (error) {
+    } catch (error:any) {
         console.error('Error fetching data:', error);
     }
   };
@@ -215,15 +205,13 @@ export default function Home() {
 
         try {
 
-          const {data} = await axios.post(apiUrl, {
+          await axios.post(apiUrl, {
               tasks: state
           });
 
           // if(data.success){
           //   setState(data?.data?.tasks)
           // }
-
-          console.log('data posted:', data?.data?.tasks);
 
         } catch (error) {
             console.error('Error creating post:', error);
@@ -233,7 +221,8 @@ export default function Home() {
       }else{
 
         try {
-          const {data} = await axios.patch(apiUrl+'/'+`${id}`, {
+          
+          await axios.patch(apiUrl+'/'+`${id}`, {
               tasks: state
           });
           
@@ -241,8 +230,6 @@ export default function Home() {
           //   setState(data?.data?.tasks)
           // }
           
-          console.log('data patched:', data?.data?.tasks);
-
         } catch (error) {
             console.error('Error creating post:', error);
             setState(prevstate)

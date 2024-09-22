@@ -1,10 +1,9 @@
-import { useTranslation } from 'react-i18next';
 import { useRouter } from 'next/router';
 import { FC ,useState} from 'react';
 import Image from "next/image";
 
 const LanguageSwitcher: FC = () => {
-  const { t } = useTranslation('common'); 
+
   const router = useRouter();
   const [open,setOpen] = useState(false)
   const [language,SetLanguage] = useState('en')
