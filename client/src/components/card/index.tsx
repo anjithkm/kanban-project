@@ -39,7 +39,7 @@ const Card :React.FC<cardProps> = ({create = false,item={},setItem,setCreateTask
   }
 
     return(
-        <div className="bg-[#FDF4E6] border border-[#190041] rounded-lg w-[347px] h-[177px] m-auto">
+        <div className="z-[1000] bg-[#FDF4E6] border border-[#190041] rounded-lg w-[347px] h-[177px] m-auto">
           
         <div className="m-2 flex flex-col">
           <div className="w-full flex flex-row items-center justify-between">
@@ -57,10 +57,10 @@ const Card :React.FC<cardProps> = ({create = false,item={},setItem,setCreateTask
           </div>
           </div>
           {
-           create ?  <input className="font-inter text-[18px] font-semibold leading-[21.78px] text-left text-[#230078] mt-1" placeholder="Task Title ..." onChange={(e)=>{setItem({...item,title:e.target.value})}} ></input> :  <div className="font-inter text-[18px] font-semibold leading-[21.78px] text-left text-[#230078] mt-1"> <HighlightedText text={ camalizeEachWords(item.title) } highlight={search||""} highlightColor="red" /></div> 
+           create ?  <input className="font-inter text-[18px] font-semibold leading-[21.78px] text-left text-[#230078] mt-1 p-[1px]" placeholder="Task Title" onChange={(e)=>{setItem({...item,title:e.target.value})}} ></input> :  <div className="font-inter text-[18px] font-semibold leading-[21.78px] text-left text-[#230078] mt-1"> <HighlightedText text={ camalizeEachWords(item.title) } highlight={search||""} highlightColor="red" /></div> 
           }
           {
-            create ? <textarea className="font-inter text-[12px] font-normal leading-[14.52px] text-left mt-1.5 h-[70px] text-[#230078]" placeholder="Task Description ..." onChange={(e)=>{setItem({...item,description:e.target.value})}} ></textarea> : <p className="font-inter text-[12px] font-normal leading-[14.52px] text-left mt-1.5 h-[76px] text-[#230078]"> <HighlightedText text={ truncate(item.description,150) } highlight={search||""} highlightColor="red" /></p>
+            create ? <textarea className="font-inter text-[12px] font-normal leading-[14.52px] text-left mt-1.5 h-[70px] text-[#230078] p-[2px]" placeholder="Task Description" onChange={(e)=>{setItem({...item,description:e.target.value})}} ></textarea> : <p className="font-inter text-[12px] font-normal leading-[14.52px] text-left mt-1.5 h-[76px] text-[#230078]"> <HighlightedText text={ truncate(item.description,150) } highlight={search||""} highlightColor="red" /></p>
           }
           {
            !create ? (

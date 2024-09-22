@@ -128,14 +128,18 @@ export default function Home() {
   const fetchData = async () => {
 
     try {
+      await axios.get('http://localhost:8080');
+    } catch (error) {
+      alert("Can't connect to 'http://localhost:8080, Try again")
+    }
+
+    try {
         const { data } = await axios.get(apiUrl);
         if(data.success){
           setState(data?.data?.tasks)
           setId(data?.data?._id)
-          // console.log("fetch response", data.data )
         }
 
-        // setState(response.data);
     } catch (error) {
         console.error('Error fetching data:', error);
     }

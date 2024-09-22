@@ -1,6 +1,4 @@
 import mongoose, { ConnectOptions } from 'mongoose';
-import { exec } from 'child_process';
-
 
 class MongoService {
     
